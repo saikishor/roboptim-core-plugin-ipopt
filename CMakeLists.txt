@@ -14,15 +14,21 @@
 # along with roboptim-core.  If not, see <http://www.gnu.org/licenses/>.
 
 # Requires at least CMake 2.8 to configure the package.
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
+
+SET(CMAKE_CXX_STANDARD 98)
+
+SET(PROJECT_NAME roboptim-core-plugin-ipopt)
+SET(PROJECT_DESCRIPTION "RobOptim core IPOPT plug-in")
+SET(PROJECT_URL "https://github.com/roboptim/roboptim-core-plugin-ipopt")
+set(PROJECT_USE_CMAKE_EXPORT TRUE)
 
 INCLUDE(cmake/base.cmake)
 INCLUDE(cmake/boost.cmake)
 INCLUDE(cmake/cpack.cmake)
 
-SET(PROJECT_NAME roboptim-core-plugin-ipopt)
-SET(PROJECT_DESCRIPTION "RobOptim core IPOPT plug-in")
-SET(PROJECT_URL "https://github.com/roboptim/roboptim-core-plugin-ipopt")
+compute_project_args(PROJECT_ARGS LANGUAGES CXX C)
+project(${PROJECT_NAME} ${PROJECT_ARGS})
 
 # Use MathJax for Doxygen formulae
 SET(DOXYGEN_USE_MATHJAX "YES")
@@ -37,7 +43,6 @@ SET(HEADERS
 
 SET(PKG_CONFIG_ADDITIONAL_VARIABLES plugindir relplugindir ${PKG_CONFIG_ADDITIONAL_VARIABLES})
 
-SETUP_PROJECT()
 
 # If compiler support symbol visibility, enable it.
 INCLUDE(CheckCCompilerFlag)
@@ -68,8 +73,8 @@ IF (NOT LTDL_H_FOUND)
 ENDIF()
 
 # Search for roboptim-core.
-ADD_REQUIRED_DEPENDENCY("roboptim-core >= 3.2")
-
+ADD_PROJECT_DEPENDENCY(roboptim-core)
+add_project_dependency(Eigen3)
 # Workaround Ipopt package issue.
 # It does not define HAVE_STDDEF even when it is needed, so we will do
 # it manually.
@@ -144,5 +149,3 @@ ELSE()
     "Tests should only be disabled for speficic cases. Do it at your own risk.")
 ENDIF()
 
-SETUP_PROJECT_FINALIZE()
-SETUP_PROJECT_CPACK()

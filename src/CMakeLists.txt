@@ -36,10 +36,12 @@ MACRO(IPOPT_PLUGIN NAME)
       PROPERTIES VERSION 3.2.0 SOVERSION 3)
   ENDIF()
   INSTALL(TARGETS roboptim-core-plugin-${NAME}
+    EXPORT ${TARGETS_EXPORT_NAME}
     DESTINATION ${PLUGINDIR})
   PKG_CONFIG_USE_DEPENDENCY(roboptim-core-plugin-${NAME} ipopt)
-  PKG_CONFIG_USE_COMPILE_DEPENDENCY(roboptim-core-plugin-${NAME} roboptim-core)
-
+  #PKG_CONFIG_USE_COMPILE_DEPENDENCY(roboptim-core-plugin-${NAME} roboptim-core)
+  TARGET_LINK_LIBRARIES(roboptim-core-plugin-${NAME} roboptim-core::roboptim-core Eigen3::Eigen)
+  
   # Make sure all symbols are defined.
   # See: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=592752
   IF(CMAKE_SYSTEM_NAME MATCHES "Linux"
