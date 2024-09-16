@@ -16,7 +16,7 @@
 # Requires at least CMake 2.8 to configure the package.
 CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
 
-SET(CMAKE_CXX_STANDARD 98)
+SET(CMAKE_CXX_STANDARD 11)
 
 SET(PROJECT_NAME roboptim-core-plugin-ipopt)
 SET(PROJECT_DESCRIPTION "RobOptim core IPOPT plug-in")
