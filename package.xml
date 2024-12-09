@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package>
+<package format="3">
   <name>roboptim-core-plugin-ipopt</name>
   <version>0.1.0</version>
   <description>This plus provides the interface from roboptim to ipopt.</description>
@@ -12,8 +12,9 @@
   
   <build_depend>rclcpp</build_depend>
   <build_depend>roboptim-core</build_depend>
+  <depend>coinor-libipopt-dev</depend>
   
-  <run_depend>rclcpp</run_depend>
-  <run_depend>roboptim-core</run_depend>
+  <exec_depend>rclcpp</exec_depend>
+  <exec_depend>roboptim-core</exec_depend>
 
 </package>
