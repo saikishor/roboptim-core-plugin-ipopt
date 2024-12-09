@@ -73,6 +73,7 @@ IF (NOT LTDL_H_FOUND)
 ENDIF()
 
 # Search for roboptim-core.
+ADD_REQUIRED_DEPENDENCY(roboptim-core)
 ADD_PROJECT_DEPENDENCY(roboptim-core)
 add_project_dependency(Eigen3)
 # Workaround Ipopt package issue.
